@@ -12,3 +12,6 @@ Corel Auto-Preserve/
 .DS_Store
 .tycho-consumer-pom.xml
 private
+
+# IDE
+/.idea
