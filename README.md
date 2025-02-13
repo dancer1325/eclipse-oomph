@@ -9,4 +9,4 @@
 * see
   * https://projects.eclipse.org/projects/tools.oomph
   * https://wiki.eclipse.org/Oomph
-  * [official documentation](releng/org.eclipse.oomph.releng.helpcenter/docs.txt)
+  * 👀[official documentation](releng/org.eclipse.oomph.releng.helpcenter/docs.md) 👀
