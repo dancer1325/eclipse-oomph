@@ -1,4 +1,4 @@
-* [Overview](overview.md)
+* [Overview](oomph.md)
 * [Eclipse Installer](Eclipse_Installer.md)
 * Features
   * [Targlets](Oomph_Targlets.md)
@@ -13,4 +13,4 @@
   * TODO:
 * Videos
   * TODO:
-* [Help Center](/releng/org.eclipse.oomph.releng.helpcenter/docs.md)
+* [Help Center](/releng/org.eclipse.oomph.releng.helpcenter/index.md)
