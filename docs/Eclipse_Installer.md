@@ -3,7 +3,7 @@ https://wiki.eclipse.org/Eclipse_Installer
 * 👀-- automates, thanks to Oomph's setup engine, the -- 
   * installation of Eclipse development environments👀
   * provision of workspaces 👀
-* ALLOWED options
+* 👀ALLOWED options 👀
   * executables
   * executables \+ embedded JRE
 * 👀-- provided by -- Oomph project 👀 
