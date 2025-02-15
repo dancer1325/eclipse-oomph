@@ -1,74 +1,37 @@
 * goal
-  * setup process -- to orchestrate the -- automated process
+  * 👀setup process -- to orchestrate the -- automated process 👀
 
-* TODO:
- A setup <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html" title="Interface in org.eclipse.oomph.setup"><code>task</code></a> is the fine-grained unit of work in the overall setup process.
- A task is declarative in nature,
- i.e., it describes what needs to be achieved rather than how it's achieved.
- Each task is contained within a <a href="DocScope.html" title="Article in Oomph Setup Documentation">scope</a>.
- The overall setup process involves <a href="DocTaskComposition.html" title="Article in Oomph Setup Documentation">gathering</a> tasks from various scopes
- and then <a href="DocTaskExecution.html" title="Article in Oomph Setup Documentation">performing</a> those tasks.
- </p>
-
-<a name="DocTask.properties">
-<p>
- Each task has the following properties:
- <ul>
-
-<a name="DocTask.id">
-<li>
- An optional <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#getID()" title="Method in org.eclipse.oomph.setup.SetupTask"><code>ID</code></a> attribute.
- The value of this attribute,
- if present,
- must be unique within the containing <a href="DocSetupResource.html" title="Article in Oomph Setup Documentation">resource</a>.
- If the task has an ID,
- a <a href="DocTask.html#DocVariableTask" title="Chapter in Oomph Setup Documentation">variable</a> is inferred for each populated String-typed attribute of that task.
- This variable behaves as if it were logically contained just before the task in the task's container.
- </li>
-
-<a name="DocTask.excludedTriggers">
-<p>
- An <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#getExcludedTriggers()" title="Method in org.eclipse.oomph.setup.SetupTask"><code>excluded</code></a> <a href="DocTask.html#DocTrigger" title="Chapter in Oomph Setup Documentation">triggers</a> attribute
- that specifies the triggers for which that task is not applicable.
- This affects which tasks will be <a href="DocTaskComposition.html" title="Article in Oomph Setup Documentation">gathered</a>.
- Most task implementations exclude the bootstrap trigger
- because they must execute within a running product where the task implementation along with the supporting infrastructure are installed.
- As such, task implementations hard-code the <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#getValidTriggers()" title="Method in org.eclipse.oomph.setup.SetupTask"><code>permissible</code></a> triggers
- and task authors can further exclude triggers from those that are permissible.
- In the end,
- by logical exclusion,
- this induces an overall set of <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#getTriggers()" title="Method in org.eclipse.oomph.setup.SetupTask"><code>allowed</code></a> triggers.
- </li>
-
-<a name="DocTask.disabled">
-<li>
- A <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#isDisabled()" title="Method in org.eclipse.oomph.setup.SetupTask"><code>disabled</code></a> attribute that specifies whether or not the task should be gathered.
- </li>
-
-<a name="DocTask.restrictions">
-<li>
- An optional <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#getRestrictions()" title="Method in org.eclipse.oomph.setup.SetupTask"><code>restrictions</code></a> reference
- that specifies the set of <a href="DocScope.html" title="Article in Oomph Setup Documentation">scopes</a> to which the task inclusively applies.
- TODO
- </li>
-
-<a name="DocTask.order">
-<li>
- Both a <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#getPredecessors()" title="Method in org.eclipse.oomph.setup.SetupTask"><code>predecessors</code></a> references and a <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#getSuccessors()" title="Method in org.eclipse.oomph.setup.SetupTask"><code>successors</code></a> reference,
- that specify that tasks that must be performed, respectively, before or after, the task itself is performed.
- Furthermore, a task has an intrinsic <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#getPriority()" title="Method in org.eclipse.oomph.setup.SetupTask"><code>priority</code></a> that is determined by the task implementor.
- All these properties affect the <a href="DocTaskComposition.html#Reorder" title="Chapter in Oomph Setup Documentation">order</a> in which tasks are performed.
- </li>
-
-<a name="DocTask.operations">
-</ul>
- <p>
- Each task supports the following operations:
- <ul>
-
-<a name="DocTask.performance">
-<li>
- Logic for determining whether the task <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#isNeeded(org.eclipse.oomph.setup.SetupTaskContext)" title="Method in org.eclipse.oomph.setup.SetupTask"><code>needs</code></a> to perform
+* Setup task
+  * `org.eclipse.oomph.setupTask`
+  * 👀== fine-grained unit of work | overall setup process 👀/
+    * declarative
+  * EACH task | [scope](DocScope.html)
+* overall setup process's steps
+  * [gather tasks -- from -- VARIOUS scopes](DocTaskComposition.html)
+  * [perform those tasks](DocTaskExecution.html)
+    * -- determined by the -- task's properties
+* task's properties
+  * `id`
+    * OPTIONAL
+    * if it exists -> MUST be UNIQUE | [resource](DocSetupResource.html)
+  * `excluded triggers`
+    * == triggers | task is NOT applicable 
+    * bootstrap trigger -- is excluded by -- MOST task implementations
+      * Reason: 🧠MUST execute | running product / task implementation + supporting infrastructure are installed 🧠
+    * `permissible triggers`
+      * hard-coded -- by the -- task implementations
+      * task authors -- can -- exclude them
+  * `disabled`
+    * == whether or NOT the task -- should be -- gathered
+  * `restrictions`
+    * OPTIONAL
+    * == set of [scopes](DocScope.html) | task applies
+  * `predecessors` & `successors`
+    * == tasks / MUST be performed | BEFORE or AFTER, the task -- is -- performed
+  * intrinsic `priority`
+    * -- determined by the -- task implementor
+* operations / -- supported by -- EACH task
+  * TODO:Logic for determining whether the task <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#isNeeded(org.eclipse.oomph.setup.SetupTaskContext)" title="Method in org.eclipse.oomph.setup.SetupTask"><code>needs</code></a> to perform
  as well the logic for <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#perform(org.eclipse.oomph.setup.SetupTaskContext)" title="Method in org.eclipse.oomph.setup.SetupTask"><code>performing</code></a> the task.
  The determination of whether that the task needs to perform
  is influenced by the <a href="DocTask.html#DocTrigger" title="Chapter in Oomph Setup Documentation">trigger</a>,
@@ -76,11 +39,8 @@
  it affects how detailed will be the analysis for determining whether the task needs to be performed
  with the general goal being to <a href="DocTaskExecution.html" title="Article in Oomph Setup Documentation">perform</a> only those tasks strictly needed for the <a href="DocTask.html#DocTrigger.startup" title="Section in Oomph Setup Documentation">startup</a> trigger.
  This behavior is documented on a per-task basis.
- </li>
 
-<a name="DocTask.override">
-<li>
- A task, in general, can be <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#overrideFor(org.eclipse.oomph.setup.SetupTask)" title="Method in org.eclipse.oomph.setup.SetupTask"><code>overridden</code></a> by other tasks during the process of <a href="DocTaskComposition.html" title="Article in Oomph Setup Documentation">gathering</a> tasks.
+  * task, in general, can be <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#overrideFor(org.eclipse.oomph.setup.SetupTask)" title="Method in org.eclipse.oomph.setup.SetupTask"><code>overridden</code></a> by other tasks during the process of <a href="DocTaskComposition.html" title="Article in Oomph Setup Documentation">gathering</a> tasks.
  Which tasks are overridden by which other tasks,
  and how that override merges two tasks into a single combined task
  is specific to each task implementation and is therefore documented on a per-task basis.
@@ -88,9 +48,7 @@
  Two tasks that yield equal override tokens are merged during the <a href="DocTaskComposition.html#InitialPhase" title="Chapter in Oomph Setup Documentation">initial</a> task gathering phase.
  </li>
 
-<a name="DocTask.consolidate">
-<li>
- A task, in general, can be <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#consolidate()" title="Method in org.eclipse.oomph.setup.SetupTask"><code>consolidated</code></a>.
+  * task / can be <a href="../../javadoc/org/eclipse/oomph/setup/SetupTask.html#consolidate()" title="Method in org.eclipse.oomph.setup.SetupTask"><code>consolidated</code></a>.
  At the end of the task gathering phase,
  each task is <a href="DocTaskComposition.html#Consolidation" title="Chapter in Oomph Setup Documentation">consolidated</a> to optimize its representation in preparation before the task is <a href="DocTaskExecution.html" title="Article in Oomph Setup Documentation">performed</a>.
  </li>
@@ -141,11 +99,3 @@
 
 <h2><a name="DocTargletTask"></a>5&nbsp;&nbsp;Targlet Task</h2>
 
-
-<p align="right">
-<a href="DocTaskExecution.html" title="Backward to Task Execution"><img src="../../images/backward.png" border="0"></a>&nbsp;<a href="DocVariableRecording.html" title="Forward to Variable Recording"><img src="../../images/forward.png" border="0"></a></p>
-<!-- <div class="help_breadcrumbs breadcrumbs_bottom"><a href="../Overview.html" title="Oomph Setup Documentation">Oomph Setup Documentation</a> > <a href="index.html" title="Category in Oomph Setup Documentation">Concepts</a></div> -->
-
-<div class="copyright">Copyright (c) 2014 Eike Stepper (Loehne, Germany) and others.<br>All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v2.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v20.html</div>
-</body>
-</html>
