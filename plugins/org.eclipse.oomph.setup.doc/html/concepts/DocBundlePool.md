@@ -13,6 +13,9 @@
     * `DocTargletTask`
   * by ALL Eclipse's p2 technology 
 
-* Oomph's characteristics / improve behavior & performance
-  * Bundle pools
-  * technology layer | p2 (TODO: [which one does it refer?](https://github.com/orgs/eclipse-oomph/discussions/137))
+---
+
+![](oomphp2.png)
+* Oomph's technology layer | p2 / manage bundle pools
+  * _Example:_ [here](https://github.com/eclipse-oomph/oomph/blob/8fedf1bdf2124ccad1ea74329fb642a8e72ebd34/plugins/org.eclipse.oomph.p2.core/src/org/eclipse/oomph/p2/core/Agent.java#L31-L39)
+  * [Discussion](https://github.com/orgs/eclipse-oomph/discussions/137)
